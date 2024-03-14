@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <label class="control-label">Nome Utente</label>
+        <input type="text" class="form-control" name="NomeUtente" />
+        @Html.ValidationMessage("NomeUtente", "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <input type="password" class="form-control" name="Password" />
+        @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+}

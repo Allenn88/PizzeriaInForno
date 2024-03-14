@@ -1,0 +1,64 @@
+﻿@model PizzeriaInForno.Models.Utente
+
+@{
+    ViewBag.Title = "Registrati";
+}
+
+<h2>Registrati</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Cognome, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Cognome, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Cognome, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NomeUtente, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NomeUtente, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NomeUtente, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Citta, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Citta, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Citta, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Indirizzo, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Indirizzo, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Indirizzo, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumeroCellulare, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.NumeroCellulare, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.NumeroCellulare, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Registrati</button>
+    </div>
+}

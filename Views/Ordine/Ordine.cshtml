@@ -1,0 +1,57 @@
+﻿@model PizzeriaInForno.Models.Ordine
+
+@{
+    ViewBag.Title = "Crea Ordine";
+}
+
+<h2>Crea un nuovo ordine</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div>
+            <label class="checkbox-inline">
+                @Html.CheckBoxFor(model => model.SelezionePranzoCena) Seleziona se è per Pranzo
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.TextAreaFor(model => model.Note, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDArticolo, "Seleziona Articolo", htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.DropDownListFor(model => model.IDArticolo, (IEnumerable<SelectListItem>)ViewBag.Articoli, "Seleziona", new { @class = "form-control", id = "ddlArticoli" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantita, htmlAttributes: new { @class = "control-label" })
+        <div>
+            @Html.TextBoxFor(model => model.Quantita, new { @class = "form-control", type = "number", min = "1", id = "txtQuantita" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="button" value="Aggiungi" class="btn btn-success" onclick="AggiungiProdotto()" />
+    </div>
+
+    <div id="elencoProdotti">
+        <!-- Qui verranno visualizzati i prodotti aggiunti -->
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Aggiungi" class="btn btn-success" formaction="@Url.Action("AddOrdine", "Ordine")" />
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
