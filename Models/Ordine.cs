@@ -24,7 +24,8 @@ namespace PizzeriaInForno.Models
 
         [ForeignKey("IDArticolo")]
         public Articolo Articolo { get; set; }
-          
+        public virtual ICollection<Carrello> Carrelloes { get; set; }
+
     }
     
 }

@@ -10,32 +10,40 @@ namespace PizzeriaInForno.Controllers
     public class OrdineController : Controller
     {
         private DBContext db = new DBContext();
-        private List<Ordine> pizzeInAttesa = new List<Ordine>(); 
+
         public ActionResult Ordine()
         {
             var articoli = db.Articolos.ToList();
             ViewBag.Articoli = new SelectList(articoli, "IDArticolo", "Nome");
 
-            return View(new Ordine());
+            return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Ordine(Ordine ordine)
+        public ActionResult CreaOrdine(int IDArticolo)
         {
-            ordine.IDUtente = Convert.ToInt32(User.Identity.Name);
-            ordine.Data = DateTime.Now;
+            var userID = Convert.ToInt32(User.Identity.Name);
+            var dataOrdine = DateTime.Now;
 
             try
             {
-                if (ModelState.IsValid)
+               
+                var ordine = new Ordine
                 {
-                    
-                    pizzeInAttesa.Add(ordine);
-                    TempData["PizzeInAttesa"] = pizzeInAttesa; 
+                    IDUtente = userID,
+                    IDArticolo = IDArticolo,
+                    Data = dataOrdine,
+                    Stato = false, 
+                    Quantita = 1 
+                };
 
-                    return RedirectToAction("Index", "Home");
-                }
+             
+                db.Ordines.Add(ordine);
+                db.SaveChanges();
+
+                ViewBag.Messaggio = "Ordine creato con successo!";
+                return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
@@ -43,45 +51,9 @@ namespace PizzeriaInForno.Controllers
             }
 
             var articoli = db.Articolos.ToList();
-            ViewBag.Articoli = new SelectList(articoli, "IDArticolo", "Nome", ordine.IDArticolo);
+            ViewBag.Articoli = new SelectList(articoli, "IDArticolo", "Nome", IDArticolo);
 
-            return View(ordine);
-        }
-
-        [HttpPost]
-        public ActionResult AddOrdine(Ordine ordine)
-        {
-            if (ModelState.IsValid)
-            {
-              
-                pizzeInAttesa.Add(ordine);
-                TempData["PizzeInAttesa"] = pizzeInAttesa; 
-
-                return RedirectToAction("Index", "Home");
-            }
-            return View(ordine);
-        }
-
-        [HttpPost]
-        public ActionResult ConfermaOrdine()
-        {
-            if (TempData["PizzeInAttesa"] != null)
-            {
-              
-                List<Ordine> pizzeInAttesa = TempData["PizzeInAttesa"] as List<Ordine>;
-
-                
-                foreach (var pizza in pizzeInAttesa)
-                {
-                    db.Ordines.Add(pizza);
-                }
-                db.SaveChanges();
-
-              
-                TempData.Remove("PizzeInAttesa");
-            }
-
-            return RedirectToAction("Index", "Home");
+            return View("Ordine");
         }
     }
 }

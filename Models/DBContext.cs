@@ -25,6 +25,19 @@ namespace PizzeriaInForno.Models
         public virtual DbSet<Articolo> Articolos { get; set; }
         public virtual DbSet<Ordine> Ordines { get; set; }
         public virtual DbSet<Utente> Utentes { get; set; }
+        public virtual DbSet<Carrello> Carrelloes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Ordine>()
+                .HasRequired(o => o.Utente)
+                .WithMany(u => (System.Collections.Generic.ICollection<Ordine>)u.Carrelloes)
+                .HasForeignKey(o => o.IDUtente)
+                .WillCascadeOnDelete(false);
+
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 
     //public class MyEntity

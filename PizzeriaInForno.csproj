@@ -164,6 +164,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\BackOfficeController.cs" />
+    <Compile Include="Controllers\CarrelloController.cs" />
     <Compile Include="Controllers\GigiPepeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -181,8 +182,13 @@
     <Compile Include="Migrations\202403141443003_Aggiornamento.Designer.cs">
       <DependentUpon>202403141443003_Aggiornamento.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403141907036_AggiornamentoCarrello.cs" />
+    <Compile Include="Migrations\202403141907036_AggiornamentoCarrello.Designer.cs">
+      <DependentUpon>202403141907036_AggiornamentoCarrello.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Articolo.cs" />
+    <Compile Include="Models\Carrello.cs" />
     <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\Ordine.cs" />
     <Compile Include="Models\RolesManage.cs" />
@@ -268,6 +274,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\" />
+    <Folder Include="Views\Carrello\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -346,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403141443003_Aggiornamento.resx">
       <DependentUpon>202403141443003_Aggiornamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403141907036_AggiornamentoCarrello.resx">
+      <DependentUpon>202403141907036_AggiornamentoCarrello.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

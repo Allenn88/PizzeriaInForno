@@ -19,5 +19,7 @@ namespace PizzeriaInForno.Models
         public string Email { get; set; }
         public string NumeroCellulare { get; set; }
         public string Role { get; set; }
+
+        public virtual ICollection<Carrello> Carrelloes { get; set; }
     }
 }
