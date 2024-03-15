@@ -1,7 +1,60 @@
-﻿
+﻿@model List<PizzeriaInForno.Models.Ordine>
+
 @{
     ViewBag.Title = "BackOffice";
 }
 
-<h2>Io sono BackOffice</h2>
+<h2>
+    <button class="btn btn-primary" onclick="window.location.href='@Url.Action("GestionePizzeria", "BackOffice")'">Gestione Pizzeria</button>
+</h2>
 
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Ordine</th>
+                <th>Selezione Pranzo/Cena</th>
+                <th>Note</th>
+                <th>ID Utente</th>
+                <th>ID Articolo</th>
+                <th>Stato</th>
+                <th>Data</th>
+                <th>Quantità</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ordine in Model)
+            {
+                <tr>
+                    <td>@ordine.IDOrdine</td>
+                    <td>@ordine.SelezionePranzoCena</td>
+                    <td>@ordine.Note</td>
+                    <td>@ordine.IDUtente</td>
+                    <td>@ordine.IDArticolo</td>
+                    <td>@ordine.Stato</td>
+                    <td>@ordine.Data</td>
+                    <td>@ordine.Quantita</td>
+                    <td>
+                        @if (!ordine.Stato)
+                        {
+                            <form action="@Url.Action("Evaso", "BackOffice")" method="post">
+                                @Html.Hidden("IDOrdine", ordine.IDOrdine)
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-primary">Evaso</button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Evaso</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nessun ordine trovato.</p>
+}

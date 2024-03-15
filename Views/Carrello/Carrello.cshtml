@@ -1,0 +1,45 @@
+﻿@model List<PizzeriaInForno.Models.Ordine>
+
+@{
+    ViewBag.Title = "Carrello";
+}
+
+<h2>Il tuo carrello</h2>
+<tr>
+    <td colspan="3" style="text-align:left;"><strong>Totale:</strong></td>
+    <td>@Model.Sum(ordine => ordine.Quantita * ordine.Articolo.Prezzo)</td>
+</tr>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Quantità</th>
+                <th>Prezzo unitario</th>
+                <th>Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ordine in Model)
+            {
+                <tr>
+                    <td>@ordine.Articolo.Nome</td>
+                    <td>@ordine.Quantita</td>
+                    <td>@ordine.Articolo.Prezzo</td>
+                    <td>@(ordine.Quantita * ordine.Articolo.Prezzo)</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Il carrello è vuoto.</p>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

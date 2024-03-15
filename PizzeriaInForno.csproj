@@ -270,11 +270,12 @@
     <Content Include="Views\GigiPepe\Details.cshtml" />
     <Content Include="Views\GigiPepe\Edit.cshtml" />
     <Content Include="Views\GigiPepe\Index.cshtml" />
+    <Content Include="Views\Carrello\Carrello.cshtml" />
+    <Content Include="Views\BackOffice\GestionePizzeria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Assets\" />
-    <Folder Include="Views\Carrello\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />

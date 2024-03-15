@@ -9,10 +9,12 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-
+    @{
+        bool isAdmin = User.Identity.IsAuthenticated && User.IsInRole("Admin");
+    }
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark text-white">
         <div class="container">
-            @Html.ActionLink("Nome dell'applicazione", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActionLink("Pizzeria In Forno", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Attiva/Disattiva spostamento" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,15 +24,18 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Menu", "Menu", "Menu", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Fai il tuo Ordine", "Ordine", "Ordine", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("BackOffice", "BackOffice", "BackOffice", new { area = "" }, new { @class = "nav-link" })</li>
+                    @if (isAdmin)
+                    {
+                        <li>@Html.ActionLink("BackOffice", "BackOffice", "BackOffice", new { area = "" }, new { @class = "nav-link" })</li>
+                    }
                 </ul>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-end navbar-nav flex-grow-1">
                     @if (User.Identity.IsAuthenticated)
                     {
-                      <form action="@Url.Action("Logout", "Login")" method="post">
-                          @Html.AntiForgeryToken()
-                          <button type="submit">Logout</button>
-                      </form>
+                        <form action="@Url.Action("Logout", "Login")" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit">Logout</button>
+                        </form>
                         @Html.ActionLink("Carrello", "Carrello", "Carrello", new { area = "" }, new { @class = "nav-link" })
                     }
                     else

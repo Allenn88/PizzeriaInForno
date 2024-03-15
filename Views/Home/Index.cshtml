@@ -1,26 +1,27 @@
 ﻿<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="aspnetTitle">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+    <section class="row" aria-labelledby="pizzeriaTitle">
+        <h1 id="pizzeriaTitle">Benvenuti alla Pizzeria</h1>
+        <p class="lead">La nostra pizzeria offre una vasta selezione di deliziose pizze fatte in casa, gustose pietanze italiane e molto altro ancora.</p>
+        <p><a href="@Url.Action("Menu", "Menu")" class="btn btn-primary btn-md">Esplora il menu &raquo;</a></p>
     </section>
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-            a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-            is an ideal platform for building RESTful applications on the .NET Framework.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+        <section class="col-md-4" aria-labelledby="pizzaTitle">
+            <h2 id="pizzaTitle">Le nostre pizze</h2>
+            <p>Scopri la nostra varietà di pizze cotte in forno a legna, preparate con ingredienti freschi e di alta qualità.</p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("Menu", "Menu")">Visualizza il menu &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+        <section class="col-md-4" aria-labelledby="deliveryTitle">
+            <h2 id="deliveryTitle">Consegna Veloce</h2>
+            <p>Goditi i nostri deliziosi piatti direttamente a casa tua con la nostra consegna veloce e affidabile.</p>
+            <p><a class="btn btn-outline-dark" href="@Url.Action("Ordine", "Ordine")">Prenota ora &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-        </section>>
+        <section class="col-md-4" aria-labelledby="orderTitle">
+            <h2 id="orderTitle">Registrati o Accedi</h2>
+            <p>Per poter effettuare un ordine, è necessario essere registrati e autenticati.</p>
+            <p>
+                <a class="btn btn-outline-dark" href="@Url.Action("Registrati", "Login")">Registrati &raquo;</a>
+                <a class="btn btn-outline-dark" href="@Url.Action("Login", "Login")">Accedi &raquo;</a>
+            </p>
+        </section>
     </div>
 </main>

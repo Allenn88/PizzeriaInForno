@@ -23,6 +23,19 @@ namespace PizzeriaInForno.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreaOrdine(Ordine ordine)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                ViewBag.Messaggio = "Effettua prima il login";
+                return RedirectToAction("Login", "Login");
+            }
+
+            if (ordine.Quantita <= 0 || ordine.Quantita == null)
+            {
+                ModelState.AddModelError("", "La quantità deve essere un numero maggiore di 0.");
+                var articoliCTR = db.Articolos.ToList();
+                ViewBag.Articoli = new SelectList(articoliCTR, "IDArticolo", "Nome", ordine.IDArticolo);
+                return View("Ordine", ordine);
+            }
             var userID = Convert.ToInt32(User.Identity.Name);
             var dataOrdine = DateTime.Now;
 

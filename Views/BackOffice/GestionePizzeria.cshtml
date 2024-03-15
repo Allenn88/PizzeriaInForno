@@ -1,0 +1,44 @@
+﻿@model List<PizzeriaInForno.Models.Ordine>
+
+@{
+    ViewBag.Title = "Gestione Pizzeria";
+}
+
+<h2>Totale Ordini Evasi: @ViewBag.TotaleOrdiniEvasi</h2>
+
+@if (Model != null && Model.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Ordine</th>
+                <th>Selezione Pranzo/Cena</th>
+                <th>Note</th>
+                <th>ID Utente</th>
+                <th>ID Articolo</th>
+                <th>Data</th>
+                <th>Quantità</th>
+                <th>Totale dell'Ordine</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ordine in Model)
+            {
+                <tr>
+                    <td>@ordine.IDOrdine</td>
+                    <td>@ordine.SelezionePranzoCena</td>
+                    <td>@ordine.Note</td>
+                    <td>@ordine.Utente.Nome</td>
+                    <td>@ordine.IDArticolo</td>
+                    <td>@ordine.Data</td>
+                    <td>@ordine.Quantita</td>
+                    <td>@(ordine.Quantita * ordine.Articolo.Prezzo)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Nessun ordine evaso trovato.</p>
+}

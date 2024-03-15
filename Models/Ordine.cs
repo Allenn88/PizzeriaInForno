@@ -19,10 +19,10 @@ namespace PizzeriaInForno.Models
         public DateTime Data { get; set; }
         public int Quantita { get; set; }   
 
-        [ForeignKey("IDUtente")]
+   
         public Utente Utente { get; set; }
 
-        [ForeignKey("IDArticolo")]
+      
         public Articolo Articolo { get; set; }
         public virtual ICollection<Carrello> Carrelloes { get; set; }
 
