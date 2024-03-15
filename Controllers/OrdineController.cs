@@ -21,24 +21,17 @@ namespace PizzeriaInForno.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreaOrdine(int IDArticolo)
+        public ActionResult CreaOrdine(Ordine ordine)
         {
             var userID = Convert.ToInt32(User.Identity.Name);
             var dataOrdine = DateTime.Now;
 
             try
             {
-               
-                var ordine = new Ordine
-                {
-                    IDUtente = userID,
-                    IDArticolo = IDArticolo,
-                    Data = dataOrdine,
-                    Stato = false, 
-                    Quantita = 1 
-                };
+                ordine.IDUtente = userID;
+                ordine.Data = dataOrdine;
+                ordine.Stato = false;
 
-             
                 db.Ordines.Add(ordine);
                 db.SaveChanges();
 
@@ -51,9 +44,10 @@ namespace PizzeriaInForno.Controllers
             }
 
             var articoli = db.Articolos.ToList();
-            ViewBag.Articoli = new SelectList(articoli, "IDArticolo", "Nome", IDArticolo);
+            ViewBag.Articoli = new SelectList(articoli, "IDArticolo", "Nome", ordine.IDArticolo);
 
             return View("Ordine");
         }
+
     }
 }

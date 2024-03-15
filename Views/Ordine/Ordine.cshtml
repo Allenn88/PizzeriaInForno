@@ -44,17 +44,6 @@
     </div>
 }
 
-<div id="elencoProdotti">
-    <!-- Qui verranno visualizzati i prodotti aggiunti -->
-    @if (ViewBag.PizzeInAttesa != null)
-    {
-        foreach (var pizza in ViewBag.PizzeInAttesa as List<PizzeriaInForno.Models.Ordine>)
-        {
-            <p>Articolo: @pizza.IDArticolo, Quantità: @pizza.Quantita</p>
-        }
-    }
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

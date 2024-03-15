@@ -18,5 +18,4 @@ namespace PizzeriaInForno.Models
 
         public virtual ICollection<Ordine> Ordini { get; set; }
     }
-
 }

@@ -7,14 +7,19 @@
     <div class="row">
         @foreach (var articolo in Model)
         {
-            <div class="col-md-4 mb-3">
+            <div class="col-md-12 mb-3">
                 <div class="card">
-                    <img src="@articolo.Foto" class="card-img-top" alt="@articolo.Nome" />
-                    <div class="card-body">
-                        <h5 class="card-title">@articolo.Nome</h5>
-                        <p class="card-text">@articolo.Ingredienti</p>
-                        <p class="card-text">Prezzo: @articolo.Prezzo</p>
-                        <button class="btn btn-primary" onclick="addCart(@articolo.IDArticolo)">Aggiungi</button>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="@articolo.Foto" class="card-img-top" alt="@articolo.Nome" style="max-height: 200px;" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">@articolo.Nome</h5>
+                                <p class="card-text">@articolo.Ingredienti</p>
+                                <p class="card-text">Prezzo: @articolo.Prezzo</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
