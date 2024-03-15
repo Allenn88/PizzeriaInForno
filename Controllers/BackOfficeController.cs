@@ -45,7 +45,7 @@ namespace PizzeriaInForno.Controllers
             foreach (var ordine in ordiniEvasi)
             {
                 db.Entry(ordine).Reference(o => o.Articolo).Load();
-                db.Entry(ordine).Reference(o => o.Utente).Load();
+               // db.Entry(ordine).Reference(o => o.Utente).Load();
             }
 
 
